@@ -10,6 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2019_03_07_215936) do
+
+  create_table "games", force: :cascade do |t|
+    t.string "name"
+    t.string "owner_id"
+  end
+
+  create_table "owners", force: :cascade do |t|
+    t.string "name"
+  end
 
 end
