@@ -4,7 +4,14 @@ class ApplicationController < Sinatra::Base
   	enable :sessions
   	set :session_secret, "secret"
   end
+  
+  configure do
+  	set :views, "app/views"
+  	set :public_dir, "public"
+  end
 
-  set :views, Proc.new { File.join(root, "templates") } # looks at templates in the views directory
+  get '/' do 
+    erb :'/homepage'
+  end 
   
 end

@@ -4,7 +4,7 @@ rush_b = Owner.create(name: "Rush B")
 
 sonic_the_hedgehog = Game.create(name: "Sonic the Hedgehog", release_date: "06/23/1991", platform: "Sega Genesis")
 counter_strike = Game.create(name: "Counter-Strike", release_date: "11/09/2000", platform: "PC")
-streets_of_rage_2 = Game.create(name: "streets of Rage 2", release_date: "12/20/1992", platform: 
+streets_of_rage_2 = Game.create(name: "Streets of Rage 2", release_date: "12/20/1992", platform: 
 "Sega Genesis")
 
 action = Genre.create(name: "Action")
