@@ -12,6 +12,11 @@
   <button type="submit">Edit Game</button>
 </form>
 
+<form action="/games/<%=@game.id%>" method="POST">
+  <input type="hidden" id="hidden" name="_method" value="DELETE">
+  <button type="submit">Delete Game</button>
+</form>
+
 <form action="/logout" method="POST">
   <button type="submit">Log out</button>
 </form>
