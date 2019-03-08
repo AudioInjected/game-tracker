@@ -10,21 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_08_011329) do
+ActiveRecord::Schema.define(version: 2019_03_08_023545) do
 
   create_table "game_genres", force: :cascade do |t|
     t.integer "game_id"
     t.integer "genre_id"
   end
 
-  create_table "game_owners", force: :cascade do |t|
+  create_table "game_users", force: :cascade do |t|
     t.integer "game_id"
-    t.integer "owner_id"
+    t.integer "user_id"
   end
 
   create_table "games", force: :cascade do |t|
     t.string "name"
-    t.string "owner_id"
+    t.string "user_id"
     t.string "release_date"
     t.string "platform"
   end
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2019_03_08_011329) do
     t.string "name"
   end
 
-  create_table "owners", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
     t.string "email"

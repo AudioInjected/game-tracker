@@ -20,7 +20,7 @@ class ApplicationController < Sinatra::Base
   
    helpers do 
     def current_user 
-      Owner.find(session[:user_id])
+      User.find(session[:user_id])
     end 
     
     def log_in(user) 

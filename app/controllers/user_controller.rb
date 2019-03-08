@@ -1,12 +1,12 @@
-class OwnerController < ApplicationController 
+class UserController < ApplicationController 
   get '/new' do 
     redirect '/games' if logged_in?
     erb :'/owners/new'
   end 
   
   post '/owners' do 
-    owner = Owner.create(params[:owner])
-    log_in(owner)
+    user = User.create(params[:user])
+    log_in(user)
     
     redirect '/games'
   end 
@@ -17,11 +17,11 @@ class OwnerController < ApplicationController
   end 
   
   post '/login' do 
-    owner = Owner.find_by(username: params[:username])
-    if !owner.nil?
-      authentic = owner.authenticate(params[:password]) # helper method which authenticates and logs in 
+    user = User.find_by(username: params[:username])
+    if !user.nil?
+      authentic = user.authenticate(params[:password]) # helper method which authenticates and logs in 
       if authentic 
-        log_in(owner)
+        log_in(user)
         redirect '/games'
       else 
         redirect '/login'
