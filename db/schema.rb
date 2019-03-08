@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_08_001401) do
+ActiveRecord::Schema.define(version: 2019_03_08_005811) do
 
   create_table "game_genres", force: :cascade do |t|
     t.integer "game_id"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2019_03_08_001401) do
   end
 
   create_table "owners", force: :cascade do |t|
-    t.string "name"
+    t.string "username"
     t.string "password_digest"
   end
 
