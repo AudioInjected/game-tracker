@@ -1,0 +1,7 @@
+<h1>My games</h1>
+<ol>
+<%@user.games.each do |game|%>
+    <li><%=game.name%> Release date: <%=game.release_date%> Platform: <%=game.platform%></li>
+    <br>
+<%end%>
+</ol>
