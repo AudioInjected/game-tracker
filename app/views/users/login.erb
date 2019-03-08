@@ -1,5 +1,5 @@
 <h1>Log in</h1>
-<%=flash[:notice] if flash[:notice]%>
+
 <%if @user%>
   <%if @user.errors.any?%>
     <%@user.errors.full_messages.each do |msg|%>
@@ -7,6 +7,9 @@
     <%end%>
   <%end%>
 <%end%>
+
+<%=flash[:notice] if flash[:notice]%>
+
 <form action="/login" method="POST">
   <label>Username:</label>
   <input type="text" name="username">

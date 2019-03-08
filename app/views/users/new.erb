@@ -1,5 +1,15 @@
 <h1>Sign up to keep track of your games!</h1>
 
+<%if @user%>
+  <%if @user.errors.any?%>
+    <%@user.errors.full_messages.each do |msg|%>
+      <h2><%=msg%></h2>
+    <%end%>
+  <%end%>
+<%end%>
+
+<%=flash[:notice] if flash[:notice]%>
+
 <form action="/users" method="POST">
   <label>Username:</label>
   <input type="text" name="user[username]">

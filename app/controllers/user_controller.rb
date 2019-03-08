@@ -1,7 +1,5 @@
 class UserController < ApplicationController 
   
-  
-  
   get '/users/new' do 
     flash[:notice] = "You are already logged in, can't sign up" if logged_in?
     redirect '/games' if logged_in?
@@ -11,7 +9,8 @@ class UserController < ApplicationController
   post '/users' do 
     @user = User.create(params[:user])
     if @user.errors 
-      erb :'/users/login'
+      flash[:notice] = "Make sure your username only consists of numbers, letters and underscore"
+      erb :'/users/new'
     else 
     log_in(@user)
     flash[:notice] = "You have successfully created an account, Welcome" 
