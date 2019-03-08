@@ -1,5 +1,5 @@
 class GameController < ApplicationController 
-  get '/users/games' do 
+  get '/games/:slug' do 
     erb :'/games/index' if logged_in?
   end
 end 

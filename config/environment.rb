@@ -11,4 +11,5 @@ ActiveRecord::Base.establish_connection(
 require 'sinatra/base'
 require 'rack-flash'
 
+
 require_all 'app'

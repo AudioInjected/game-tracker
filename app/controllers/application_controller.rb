@@ -18,6 +18,7 @@ class ApplicationController < Sinatra::Base
   
   get '/games' do 
     flash[:notice] = "You are not logged_in" if !logged_in?
+    @user = current_user
     logged_in? ? erb(:'/games') : redirect('/login')
   end 
   

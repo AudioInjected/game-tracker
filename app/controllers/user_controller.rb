@@ -1,4 +1,7 @@
 class UserController < ApplicationController 
+  
+  
+  
   get '/users/new' do 
     flash[:notice] = "You are already logged in, can't sign up" 
     redirect '/games' if logged_in?

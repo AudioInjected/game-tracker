@@ -1,9 +1,18 @@
 <h1>Games owned by all users!</h1>
 
+<form action="/games/<%=@user.slug%>" method="GET">
+  <button type="submit">View My Games</button>
+</form>
+
+<form action="/logout" method="POST">
+  <button type="submit">Log out</button>
+</form>
+
 <%= flash[:notice] if flash[:notice]%>
 <%Game.all.each do |game|%>
   <h3><%=game.name%> Released in <%=game.release_date%> For <%=game.platform%></h3>
 <%end%>
-<form action="/logout" method="POST">
-  <button type="submit">Log out</button>
-</form>  
+
+
+
+  
