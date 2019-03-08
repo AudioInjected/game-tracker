@@ -14,4 +14,22 @@ class ApplicationController < Sinatra::Base
     erb :'/homepage'
   end 
   
+   helpers do 
+    def current_user 
+      Owner.find(session[:user_id])
+    end 
+    
+    def log_in(user) 
+      session[:user_id] = user.id
+    end 
+    
+    def logged_in? 
+      !!session[:user_id]
+    end 
+    
+    def logout 
+      session.clear
+      redirect '/login'
+    end 
+  end 
 end
