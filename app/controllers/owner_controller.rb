@@ -10,4 +10,11 @@ class OwnerController < ApplicationController
     
     redirect '/games'
   end 
+  
+  get '/login' do 
+    redirect '/games' if logged_in?
+    erb :'/owners/login'
+  end 
+  
+
 end 
