@@ -14,6 +14,10 @@ class ApplicationController < Sinatra::Base
     erb :'/homepage'
   end 
   
+  get '/games' do 
+    logged_in? ? erb(:'/games') : redirect('/login')
+  end 
+  
    helpers do 
     def current_user 
       Owner.find(session[:user_id])
