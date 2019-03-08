@@ -1,3 +1,4 @@
+<%if false%>
 <h1>Games owned by all users!</h1>
 
 <form action="/users/games/<%=@user.slug%>" method="GET">
@@ -11,6 +12,8 @@
 <%= flash[:notice] if flash[:notice]%>
 <%Game.all.each do |game|%>
   <h3><%=game.name%> Released in <%=game.release_date%> For <%=game.platform%></h3>
+<%end%>
+
 <%end%>
 
 

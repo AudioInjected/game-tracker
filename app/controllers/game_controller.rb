@@ -1,6 +1,6 @@
 class GameController < ApplicationController 
 
-  get '/games/:id' do 
+  get '/games' do 
     
   end 
 end 

@@ -2,7 +2,7 @@ class UserController < ApplicationController
   
   get '/users/new' do 
     flash[:notice] = "You are already logged in, can't sign up" if logged_in?
-    redirect '/games' if logged_in?
+    redirect '/users/:slug' if logged_in?
     erb :'/users/new'
   end 
   
@@ -14,14 +14,14 @@ class UserController < ApplicationController
     else 
     log_in(@user)
     flash[:notice] = "You have successfully created an account, Welcome" 
-    redirect "/users/#{@user.slug}"
+    redirect "/users/:id"
     end 
 
   end 
   
   get '/login' do 
     flash[:notice] = "You are already logged in" if logged_in?
-    redirect '/games' if logged_in?
+    redirect "/users/:id" if logged_in?
     erb :'/users/login'
   end 
   
@@ -33,7 +33,7 @@ class UserController < ApplicationController
       authentic = @user.authenticate(params[:password]) # helper method which authenticates and logs in 
       if authentic 
         log_in(@user)
-        redirect "/users/#{@user.slug}"
+        redirect "/users/:id"
       else 
         flash[:notice] = "The password you entered is incorrect"
         redirect '/login'
@@ -45,9 +45,10 @@ class UserController < ApplicationController
   end 
   #############################################
   
-  get '/users/:slug' do 
-    @user = User.find_by_slug(params[:slug]) 
-    erb :'/games/index' if logged_in?
+  get '/users/:id' do 
+    @user = current_user 
+    flash[:notice] = "You are not logged in" if !logged_in?
+    logged_in? ? erb(:'/games/index') : redirect('/login')
   end
   
   post '/logout' do 
