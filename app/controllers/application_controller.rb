@@ -16,12 +16,16 @@ class ApplicationController < Sinatra::Base
     erb :'/homepage'
   end 
   
-  get '/games' do 
+#####################  Add this feature later: lets a user see all games owned by all users
+=begin 
+  get '/all-games' do 
     flash[:notice] = "You are not logged_in" if !logged_in?
     @user = current_user
     logged_in? ? erb(:'/games') : redirect('/login')
   end 
-  
+=end  
+####################
+
    helpers do 
     def current_user 
       User.find(session[:user_id])

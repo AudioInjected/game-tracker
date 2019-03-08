@@ -14,7 +14,7 @@ class UserController < ApplicationController
     else 
     log_in(@user)
     flash[:notice] = "You have successfully created an account, Welcome" 
-    redirect '/games'
+    redirect "/users/#{@user.slug}"
     end 
 
   end 
@@ -24,6 +24,7 @@ class UserController < ApplicationController
     redirect '/games' if logged_in?
     erb :'/users/login'
   end 
+  
   ##############################################
   # Refector this before submitting
   post '/login' do 
@@ -32,7 +33,7 @@ class UserController < ApplicationController
       authentic = @user.authenticate(params[:password]) # helper method which authenticates and logs in 
       if authentic 
         log_in(@user)
-        redirect '/games'
+        redirect "/users/#{@user.slug}"
       else 
         flash[:notice] = "The password you entered is incorrect"
         redirect '/login'
@@ -43,6 +44,12 @@ class UserController < ApplicationController
     end 
   end 
   #############################################
+  
+  get '/users/:slug' do 
+    @user = User.find_by_slug(params[:slug]) 
+    erb :'/games/index' if logged_in?
+  end
+  
   post '/logout' do 
     flash[:notice] = "The cake is a lie. You are not logged in for you to log out..." 
     logged_in? ? logout : redirect('/login')
