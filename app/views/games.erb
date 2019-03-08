@@ -1,5 +1,6 @@
 <h1>List of games go here!</h1>
 
+<%= flash[:notice] if flash[:notice]%>
 <form action="/logout" method="POST">
   <button type="submit">Log out</button>
 </form>  

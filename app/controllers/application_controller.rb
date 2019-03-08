@@ -9,12 +9,15 @@ class ApplicationController < Sinatra::Base
   	set :views, "app/views"
   	set :public_dir, "public"
   end
+  
+  use Rack::Flash
 
   get '/' do 
     erb :'/homepage'
   end 
   
   get '/games' do 
+    flash[:notice] = "You are not logged_in" if !logged_in?
     logged_in? ? erb(:'/games') : redirect('/login')
   end 
   
@@ -33,6 +36,7 @@ class ApplicationController < Sinatra::Base
     
     def logout 
       session.clear
+      flash[:notice] = "You have successfully logged out"
       redirect '/login'
     end 
   end 

@@ -1,8 +1,10 @@
 <h1>Log in</h1>
-
-<%if @user.errors.any?%>
-  <%@user.errors.full_messages.each do |msg|%>
-    <h2><%=msg%></h2>
+<%=flash[:notice] if flash[:notice]%>
+<%if @user%>
+  <%if @user.errors.any?%>
+    <%@user.errors.full_messages.each do |msg|%>
+      <h2><%=msg%></h2>
+    <%end%>
   <%end%>
 <%end%>
 <form action="/login" method="POST">
