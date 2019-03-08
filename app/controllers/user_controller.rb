@@ -1,10 +1,10 @@
 class UserController < ApplicationController 
-  get '/new' do 
+  get 'users/new' do 
     redirect '/games' if logged_in?
     erb :'/owners/new'
   end 
   
-  post '/owners' do 
+  post '/users' do 
     user = User.create(params[:user])
     log_in(user)
     
@@ -13,7 +13,7 @@ class UserController < ApplicationController
   
   get '/login' do 
     redirect '/games' if logged_in?
-    erb :'/owners/login'
+    erb :'/users/login'
   end 
   
   post '/login' do 

@@ -1,6 +1,6 @@
-huge_sonic_fan = User.create(username: "Huge Sonic Fan", password: "sonic")
-meh_sonic_fan = User.create(username: "Meh Sonic Fan", password: "meh")
-rush_b = User.create(username: "Rush B", password: "go go go")
+huge_sonic_fan = User.create(username: "Huge Sonic Fan", email: "sonic_fan@email.com", password: "sonic")
+meh_sonic_fan = User.create(username: "Meh Sonic Fan", email: "meh@email.com", password: "meh")
+rush_b = User.create(username: "Rush B", email: "rush_b@email.com", password: "go go go")
 
 sonic_the_hedgehog = Game.create(name: "Sonic the Hedgehog", release_date: "06/23/1991", platform: "Sega Genesis")
 counter_strike = Game.create(name: "Counter-Strike", release_date: "11/09/2000", platform: "PC")
