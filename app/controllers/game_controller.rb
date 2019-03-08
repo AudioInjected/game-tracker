@@ -23,6 +23,7 @@ class GameController < ApplicationController
   
   get '/games/:id/edit' do 
     @game = Game.find(params[:id])
+    flash[:notice] = "All your base belong to us"
     @game.user == current_user ? erb(:'/games/edit') : redirect('/games')
   end 
   
@@ -35,5 +36,17 @@ class GameController < ApplicationController
     flash[:notice] = "You have successfully edited your game!"
     
     redirect "/games/#{@game.id}"
+  end 
+  
+  delete '/games/:id' do 
+    @game = Game.find(params[:id])
+    if @game.user == current_user
+      @game.delete
+      flash[:notice] = "Game sent into the ether"
+      redirect '/games'
+    else 
+      flash[:notice] = "What a horrible night to have a curse"
+      redirect '/games'
+    end 
   end 
 end 
