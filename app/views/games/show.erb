@@ -2,13 +2,14 @@
 <h2>Release Date: <%=@game.release_date%></h2>
 <h2>Platform: <%=@game.platform%></h2>
 
+<%= flash[:notice] if flash[:notice]%>
 
 <form action="/games" method="GET">
   <button type="submit">My games</button>
 </form>
 
-<form action="/games/new" method="GET">
-  <button type="submit">Create a new game</button>
+<form action="/games/<%=@game.id%>/edit" method="GET">
+  <button type="submit">Edit Game</button>
 </form>
 
 <form action="/logout" method="POST">
