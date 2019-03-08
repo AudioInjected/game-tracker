@@ -20,4 +20,9 @@ class GameController < ApplicationController
     @game = Game.create(params[:game])
     redirect "/games/#{@game.id}"
   end 
+  
+  get '/games/:id/edit' do 
+    @game = Game.find(params[:id])
+    @game.user == current_user ? erb(:'/games/edit') : redirect('/games')
+  end 
 end 
