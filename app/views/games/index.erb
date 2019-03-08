@@ -1,7 +1,7 @@
 <h1>My games</h1>
 <ol>
 <%@user.games.each do |game|%>
-    <li><a href="games/<%=game.id%>"><%=game.name%></a> Release date: <%=game.release_date%> Platform: <%=game.platform%></li>
+    <li><a href="/games/<%=game.id%>"><%=game.name%></a></li>
     <br>
 <%end%>
 </ol>
