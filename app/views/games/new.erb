@@ -2,13 +2,13 @@
 
 <form action='/games' method="POST">
   <label>Name:</label>
-  <input type="text" name="game[name]">
+  <input type="text" name="game[name]" required>
   
   <label>Release Date:</label>
-  <input type="text" name="game[release_date]">
+  <input type="text" name="game[release_date]" required>
   
   <label>Platform:</label>
-  <input type="text" name="game[platform]">
+  <input type="text" name="game[platform]" required>
   
   <button type="submit">Create Game</button>
 </form>
