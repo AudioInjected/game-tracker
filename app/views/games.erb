@@ -1,6 +1,9 @@
-<h1>List of games go here!</h1>
+<h1>Games owned by all users!</h1>
 
 <%= flash[:notice] if flash[:notice]%>
+<%Game.all.each do |game|%>
+  <h3><%=game.name%> Released in <%=game.release_date%> For <%=game.platform%></h3>
+<%end%>
 <form action="/logout" method="POST">
   <button type="submit">Log out</button>
 </form>  
