@@ -7,7 +7,7 @@ module Slug
   
   module ClassMethods 
     def find_by_slug(slug)
-      name = slug.gsub("-", "_").split.map(&:capitalize).join(' ')
+      username = slug.gsub("-", "_").split.map(&:capitalize).join(' ')
       self.where('lower(username) = ?', username.downcase).first
     end 
   end
