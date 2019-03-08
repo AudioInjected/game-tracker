@@ -4,4 +4,5 @@ class GameController < ApplicationController
     @game = Game.find(params[:id])
     erb :'/games/show'
   end 
+  
 end 

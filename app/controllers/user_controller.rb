@@ -1,8 +1,9 @@
 class UserController < ApplicationController 
   
   get '/users/new' do 
+    
     flash[:notice] = "You are already logged in, can't sign up" if logged_in?
-    redirect '/users/:slug' if logged_in?
+    redirect "/users/#{current_user.id}" if logged_in?
     erb :'/users/new'
   end 
   
@@ -14,14 +15,14 @@ class UserController < ApplicationController
     else 
     log_in(@user)
     flash[:notice] = "You have successfully created an account, Welcome" 
-    redirect "/users/:id"
+    redirect "/users/#{@user.id}"
     end 
 
   end 
   
   get '/login' do 
     flash[:notice] = "You are already logged in" if logged_in?
-    redirect "/users/:id" if logged_in?
+    redirect "/users/#{@user.id}" if logged_in?
     erb :'/users/login'
   end 
   
@@ -33,7 +34,7 @@ class UserController < ApplicationController
       authentic = @user.authenticate(params[:password]) # helper method which authenticates and logs in 
       if authentic 
         log_in(@user)
-        redirect "/users/:id"
+        redirect "/users/#{@user.id}"
       else 
         flash[:notice] = "The password you entered is incorrect"
         redirect '/login'
