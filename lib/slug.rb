@@ -1,13 +1,13 @@
 module Slug
   module InstanceMethods
     def slug
-      self.username.downcase.gsub(" ", "-")
+      self.username.downcase.gsub("_", "-")
     end 
   end
   
   module ClassMethods 
     def find_by_slug(slug)
-      name = slug.gsub("-", " ").split.map(&:capitalize).join(' ')
+      name = slug.gsub("-", "_").split.map(&:capitalize).join(' ')
       self.where('lower(username) = ?', username.downcase).first
     end 
   end
