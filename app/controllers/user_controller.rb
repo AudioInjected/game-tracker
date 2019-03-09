@@ -1,9 +1,8 @@
 class UserController < ApplicationController 
   
   get '/users/new' do 
-    
     flash[:notice] = "You are already logged in, can't sign up" if logged_in?
-    redirect "/users/#{current_user.id}" if logged_in?
+    redirect "/games" if logged_in?
     erb :'/users/new'
   end 
   

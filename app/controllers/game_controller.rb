@@ -12,12 +12,18 @@ class GameController < ApplicationController
   end 
   
   get '/games/:id' do 
-    @game = Game.find(params[:id])
-    erb :'/games/show'
+    if @game = Game.where(id: params[:id]).first
+      erb :'/games/show'
+    else
+      flash[:notice] = "Game not found"
+      redirect '/games'
+    end
   end 
   
   post '/games' do 
     @game = Game.create(params[:game])
+    @game.user = current_user
+    @game.save
     redirect "/games/#{@game.id}"
   end 
   
