@@ -18,25 +18,23 @@ class ApplicationController < Sinatra::Base
     erb :'/login'
   end 
   
-  ##############################################
-  # Refector this before submitting
   post '/login' do 
     @user = User.find_by(username: params[:username])
-    if !@user.nil?
-      authentic = @user.authenticate(params[:password]) # helper method which authenticates and logs in 
-      if authentic 
-        log_in(@user)
-        redirect "/games"
-      else 
-        flash[:notice] = "The password you entered is incorrect"
-        redirect '/login'
-      end 
-    else 
+    if @user.nil? 
       flash[:notice] = "You have entered an invalid username. Sign up or check to make sure the username you entered is correct"
       redirect '/login'
-    end 
-  end 
-  #############################################
+    elsif !@user.authenticate(params[:password])
+      flash[:notice] = "The password you entered is incorrect"
+      redirect '/login'
+    elsif @user.authenticate(params[:password])
+      flash[:notice] = "Log in successful"
+      log_in(@user)
+      redirect "/games"
+    else 
+      flash[:notice] = "An Error has occured"
+      redirect '/'
+    end
+  end  
   
   post '/logout' do 
     flash[:notice] = "The cake is a lie. You are not logged in for you to log out..." 
@@ -59,7 +57,7 @@ class ApplicationController < Sinatra::Base
     def logout 
       session.clear
       flash[:notice] = "You have successfully logged out"
-      redirect '/login'
+      redirect '/'
     end 
   end 
 end

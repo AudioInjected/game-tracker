@@ -1,5 +1,7 @@
 <h1>Welcome to GameTracker</h1>
 
+<%= flash[:notice] if flash[:notice]%>
+
 <form action="/users/new" method="GET">
   <button type="submit">Signup</button>
 </form>
