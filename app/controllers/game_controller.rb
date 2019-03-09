@@ -7,6 +7,7 @@ class GameController < ApplicationController
   end
 
   get '/games/new' do 
+    flash[:notice] = "You are not logged in" if !logged_in?
     redirect '/login' if !logged_in?
     erb :"/games/new"
   end 
@@ -22,7 +23,7 @@ class GameController < ApplicationController
   
   post '/games' do 
     @game = Game.create(params[:game])
-    params[:genres].each {|genre_id| @game.genres << Genre.find(genre_id)}
+    params[:genres].each {|genre_id| @game.genres << Genre.find(genre_id)} if params[:genres]
     @game.user = current_user
     @game.save
     redirect "/games/#{@game.id}"
@@ -40,7 +41,7 @@ class GameController < ApplicationController
     @game.name = params[:name] if !params[:name].empty?
     @game.release_date = params[:release_date] if !params[:release_date].empty?
     @game.genres.clear
-    params[:genres].each {|genre_id| @game.genres << Genre.find(genre_id)}
+    params[:genres].each {|genre_id| @game.genres << Genre.find(genre_id)} if params[:genres]
     @game.platform = params[:platform] if !params[:platform].empty?
     @game.save
     flash[:notice] = "You have successfully edited your game!"

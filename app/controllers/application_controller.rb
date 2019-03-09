@@ -40,6 +40,14 @@ class ApplicationController < Sinatra::Base
     flash[:notice] = "The cake is a lie. You are not logged in for you to log out..." 
     logged_in? ? logout : redirect('/login')
   end 
+  
+  # 404 Error!
+  not_found do
+    status 404
+    erb :error
+  end
+  
+
 
    helpers do 
     def current_user 

@@ -9,12 +9,12 @@ Specs:
 - [x] Include user accounts with unique login attribute (username or email): The user model has "validates_uniqueness_of" which only allows users with unique usernames and emails to be stored in the database
 - [x] Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying: There is a GET /games/new and POST /games route for creating a new game, a GET /games/:id route for reading a game, a GET games/:id/edit and a PATCH /games/:id route to edit a game, and a DELETE /games/:id route to delete a game
 - [x] Ensure that users can't modify content created by other users: There is a helper method current_user that will reify a user from the Users table based on the user id in the session. A user is allowed to edit the game only if the game belongs to the user  
-- [x] Include user input validations: A User can not leave the username, email, or password blank, same for the Games attributes. Each model has a validation
-- [x] BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new)
-- [ ] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
+- [x] Include user input validations: A User can not leave the username, email, or password blank, same for the Games attributes. Each model has a validation for its attributes except Genres. Genres are already created
+- [x] BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new): Ther are flash messages for when a user logs in and out successfuly, enters an invalid username or password, or tries to create a new game when not logged in
+- [x] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
 
 Confirm
-- [ ] You have a large number of small Git commits
-- [ ] Your commit messages are meaningful
-- [ ] You made the changes in a commit that relate to the commit message
-- [ ] You don't include changes in a commit that aren't related to the commit message
+- [x] You have a large number of small Git commits
+- [x] Your commit messages are meaningful
+- [x] You made the changes in a commit that relate to the commit message
+- [x] You don't include changes in a commit that aren't related to the commit message
