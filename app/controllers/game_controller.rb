@@ -28,8 +28,9 @@ class GameController < ApplicationController
   end 
   
   get '/games/:id/edit' do 
-    @game = Game.find(params[:id])
-    flash[:notice] = "All your base belong to us"
+    @game = Game.where(id: params[:id]).first
+    flash[:notice] = "An Error has occured. All your base belong to us"
+    redirect '/games' if @game.nil?
     @game.user == current_user ? erb(:'/games/edit') : redirect('/games')
   end 
   
