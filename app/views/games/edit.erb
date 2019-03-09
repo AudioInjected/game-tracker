@@ -14,6 +14,14 @@
   </div>
   
   <div>
+    <label>Genres:</label>
+    <%Genre.all.each do |genre| %>
+    <label><%=genre.name%></label>
+      <input id="<%= genre.name %>" type="checkbox" name="genres[]" value="<%= genre.id %>">
+    <%end%>
+  </div>
+  
+  <div>
     <h2><%=@game.platform%></h2>
     <label>Platform:</label>
     <input type="text" name="platform">

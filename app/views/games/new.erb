@@ -1,14 +1,30 @@
 <h1>Create a game</h1>
 
 <form action='/games' method="POST">
-  <label>Name:</label>
-  <input type="text" name="game[name]" required>
+  <div>
+   <label>Name:</label>
+    <input type="text" name="game[name]" required>
+  </div>
   
-  <label>Release Date:</label>
-  <input type="text" name="game[release_date]" required>
+  <div>
+    <label>Release Date:</label>
+   <input type="text" name="game[release_date]" required>
+  </div>
   
-  <label>Platform:</label>
-  <input type="text" name="game[platform]" required>
+  <div>
+    <label>Genres:</label>
+    <%Genre.all.each do |genre| %>
+    <label><%=genre.name%></label>
+      <input id="<%= genre.name %>" type="checkbox" name="genres[]" value="<%= genre.id %>">
+    <%end%>
+  </div>
   
-  <button type="submit">Create Game</button>
+  <div>
+    <label>Platform:</label>
+    <input type="text" name="game[platform]" required>
+  </div>
+  
+  <div>
+    <button type="submit">Create Game</button>
+  </div>
 </form>

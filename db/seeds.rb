@@ -26,3 +26,9 @@ huge_sonic_fan.games << sonic_the_hedgehog
 huge_sonic_fan.games << streets_of_rage_2
 meh_sonic_fan.games << sonic_the_hedgehog_2nd_copy 
 meh_sonic_fan.games << counter_strike
+
+Genre.create(name: "RPG")
+Genre.create(name: "Racing")
+Genre.create(name: "RTS")
+Genre.create(name: "Fighting")
+Genre.create(name: "Adventure")

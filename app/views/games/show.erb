@@ -1,5 +1,8 @@
 <h1><%=@game.name%></h1>
 <h2>Release Date: <%=@game.release_date%></h2>
+<%@game.genres.each do |genre|%>
+  <h2><%=genre.name%></h2>
+<%end%>
 <h2>Platform: <%=@game.platform%></h2>
 
 <%= flash[:notice] if flash[:notice]%>

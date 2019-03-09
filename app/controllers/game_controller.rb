@@ -22,6 +22,7 @@ class GameController < ApplicationController
   
   post '/games' do 
     @game = Game.create(params[:game])
+    params[:genres].each {|genre_id| @game.genres << Genre.find(genre_id)}
     @game.user = current_user
     @game.save
     redirect "/games/#{@game.id}"
@@ -38,6 +39,8 @@ class GameController < ApplicationController
     @game = Game.find(params[:id])
     @game.name = params[:name] if !params[:name].empty?
     @game.release_date = params[:release_date] if !params[:release_date].empty?
+    @game.genres.clear
+    params[:genres].each {|genre_id| @game.genres << Genre.find(genre_id)}
     @game.platform = params[:platform] if !params[:platform].empty?
     @game.save
     flash[:notice] = "You have successfully edited your game!"
