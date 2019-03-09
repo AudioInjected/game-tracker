@@ -1,5 +1,5 @@
 class GameController < ApplicationController 
-
+  
   get '/games' do 
     @user = current_user 
     flash[:notice] = "You are not logged in" if !logged_in?
