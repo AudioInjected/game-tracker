@@ -3,13 +3,9 @@ class ApplicationController < Sinatra::Base
   configure do
   	enable :sessions
   	set :session_secret, "secret"
-  end
-  
-  configure do
   	set :views, "app/views"
-  	set :public_dir, "public"
   end
-  
+
   use Rack::Flash
 
   get '/' do 
@@ -19,7 +15,7 @@ class ApplicationController < Sinatra::Base
   get '/login' do 
     flash[:notice] = "You are already logged in" if logged_in?
     redirect "/games" if logged_in?
-    erb :'/users/login'
+    erb :'/login'
   end 
   
   ##############################################
@@ -67,14 +63,3 @@ class ApplicationController < Sinatra::Base
     end 
   end 
 end
-
-
-#####################  Add this feature later: lets a user see all games owned by all users
-=begin 
-  get '/all-games' do 
-    flash[:notice] = "You are not logged_in" if !logged_in?
-    @user = current_user
-    logged_in? ? erb(:'/games') : redirect('/login')
-  end 
-=end  
-####################
