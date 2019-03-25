@@ -35,19 +35,18 @@ class GameController < ApplicationController
     redirect '/games' if @game.nil?
     @game.user == current_user ? erb(:'/games/edit') : redirect('/games')
   end 
-  
+  ##############################
   patch '/games/:id' do 
     @game = Game.find(params[:id])
-    @game.name = params[:name] if !params[:name].empty?
-    @game.release_date = params[:release_date] if !params[:release_date].empty?
-    @game.genres.clear
-    params[:genres].each {|genre_id| @game.genres << Genre.find(genre_id)} if params[:genres]
-    @game.platform = params[:platform] if !params[:platform].empty?
-    @game.save
-    flash[:notice] = "You have successfully edited your game!"
-    
-    redirect "/games/#{@game.id}"
+    if @game.update(params[:game])
+      flash[:notice] = "You have successfully edited your game!"
+      redirect "/games/#{@game.id}"
+    else 
+      flash[:notice] = "Something went wrong"
+      redirect "/game/#{@game.id}/edit"
+    end
   end 
+  #############################
   
   delete '/games/:id' do 
     @game = Game.find(params[:id])

@@ -2,29 +2,26 @@
 <form action='/games/<%=@game.id%>' method="POST">
   <input type="hidden" id="hidden" name="_method" value="PATCH">
   <div>
-    <h2><%=@game.name%></h2>
     <label>Name:</label>
-    <input type="text" name="name">
+    <input type="text" name="game[name]" value="<%=@game.name%>">
   </div>
   
   <div>
-    <h2><%=@game.release_date%></h2>
     <label>Release Date:</label>
-    <input type="text" name="release_date">
+    <input type="text" name="game[release_date]" value="<%=@game.release_date%>">
   </div>
   <br>
   <div>
     <label>Genres:</label>
     <%Genre.all.each do |genre| %>
     <label><%=genre.name%></label>
-      <input id="<%= genre.name %>" type="checkbox" name="genres[]" value="<%= genre.id %>">
+      <input id="<%= genre.name %>" type="checkbox" name="game[genres][]" value="<%= genre.id %>">
     <%end%>
   </div>
   
   <div>
-    <h2><%=@game.platform%></h2>
     <label>Platform:</label>
-    <input type="text" name="platform">
+    <input type="text" name="game[platform]" value="<%=@game.platform%>">
   </div>
   
   <button type="submit">Edit Game</button>
